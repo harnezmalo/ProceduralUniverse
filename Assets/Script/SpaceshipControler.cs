@@ -7,6 +7,7 @@ public class SpaceshipControler : MonoBehaviour
     public float thrustForce = 5f; // Force d'accélération
     public float rotationSpeed = 200f; // Vitesse de rotation
     public float maxSpeed = 10f; // Vitesse maximale du vaisseau
+    public float smoothTime = 0.3f; // Temps de lissage de la vitesse
 
     private Rigidbody2D rb;
     void Start()
@@ -29,12 +30,21 @@ public class SpaceshipControler : MonoBehaviour
         {
             Vector2 force = transform.up * thrustForce;
             rb.AddForce(force);
+        }
 
-            // Limiter la vitesse maximale
-            if (rb.velocity.magnitude > maxSpeed)
-            {
-                rb.velocity = rb.velocity.normalized * maxSpeed;
-            }
+        ClampSpeed();
+    }
+
+    private void ClampSpeed()
+    {
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            // Calculer la direction de la vitesse (normalisation)
+            Vector2 limitedVelocity = rb.velocity.normalized * maxSpeed;
+
+            // Appliquer la vitesse limitée à la vitesse actuelle
+            rb.velocity = Vector2.Lerp(rb.velocity, limitedVelocity, smoothTime);
         }
     }
 }
+

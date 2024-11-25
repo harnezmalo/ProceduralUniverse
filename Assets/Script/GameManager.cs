@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoints");
     }
 
     // Update is called once per frame
@@ -44,9 +44,10 @@ public class GameManager : MonoBehaviour
             float random = UnityEngine.Random.Range(0f, 100f);
             if (random <= FrequenceApparition)
             {
-                UnityEngine.Object newPlanete = Instantiate(planetePrefab, go.transform);
+                UnityEngine.Object newPlanete = Instantiate(planetePrefab, go.transform.position, Quaternion.identity);
                 Planet planetScript = newPlanete.GetComponent<Planet>();
                 planetScript.Initiate();
+                Debug.Log("créé");
             }
 
         }

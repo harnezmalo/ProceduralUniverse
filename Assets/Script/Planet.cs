@@ -8,8 +8,8 @@ public class Planet : MonoBehaviour
     GameManager GameManager;
     Sprite Sprite;
     bool destroyable = false;
-    float time = 0;
     bool visible = false;
+    bool firstVisible = false;
 
     void Start()
     {
@@ -20,8 +20,7 @@ public class Planet : MonoBehaviour
     {
         if (destroyable == false)
         {
-            time = time + Time.deltaTime;
-            if (time > 3)
+            if (firstVisible == true)
             {
                 destroyable = true;
             }
@@ -30,6 +29,7 @@ public class Planet : MonoBehaviour
         if (visible == false && destroyable == true)
         {
             Destroy(gameObject);
+            Debug.Log("detruit");
         }
     }
 
@@ -50,8 +50,7 @@ public class Planet : MonoBehaviour
         Dialogue = dialogue;
         Choix = choix;
 
-        Sprite = GetComponent<SpriteRenderer>().sprite;
-        Sprite = Image.Planète;
+        GetComponent<SpriteRenderer>().sprite = Image.Planète;
         
     }
 
@@ -62,6 +61,7 @@ public class Planet : MonoBehaviour
 
     public void OnBecameVisible()
     {
+        firstVisible = true;
         visible = true;
     }
 }

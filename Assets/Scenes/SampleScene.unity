@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpaceShip: {fileID: 785524238}
-  latence: 0.175
+  latence: 0.005
 --- !u!1 &583023223
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,9 +716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86122800d3980a499df0a8bdea063b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 12
+  thrustForce: 5
   rotationSpeed: 200
-  maxSpeed: 3
+  maxSpeed: 2
+  smoothTime: 0.3
 --- !u!50 &785524236
 Rigidbody2D:
   serializedVersion: 4
@@ -1031,10 +1032,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   images:
   - {fileID: 11400000, guid: 5087d49ca316a1f4cb9efda092e525d5, type: 2}
-  dialogues: []
-  choixI: []
-  FrequenceApparition: 0
-  planetePrefab: {fileID: 0}
+  dialogues:
+  - {fileID: 11400000, guid: 115d4d0bf2f8981449649a2756aef6cd, type: 2}
+  choixI:
+  - {fileID: 11400000, guid: 9f1c0f82542b12a4fbd0bbd7920c281a, type: 2}
+  FrequenceApparition: 0.002
+  planetePrefab: {fileID: 821398170331199783, guid: d513af75055ac1f48a90a30d11ba0944, type: 3}
 --- !u!4 &1632065746
 Transform:
   m_ObjectHideFlags: 0
