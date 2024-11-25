@@ -7,6 +7,9 @@ public class Planet : MonoBehaviour
     Choix Choix;
     GameManager GameManager;
     Sprite Sprite;
+    bool destroyable = false;
+    float time = 0;
+    bool visible = false;
 
     void Start()
     {
@@ -15,7 +18,19 @@ public class Planet : MonoBehaviour
 
     void Update()
     {
-        
+        if (destroyable == false)
+        {
+            time = time + Time.deltaTime;
+            if (time > 3)
+            {
+                destroyable = true;
+            }
+        }
+
+        if (visible == false && destroyable == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnCollisionStay(Collision collision)
@@ -38,5 +53,15 @@ public class Planet : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>().sprite;
         Sprite = Image.Planète;
         
+    }
+
+    public void OnBecameInvisible()
+    {
+        visible = false;
+    }
+
+    public void OnBecameVisible()
+    {
+        visible = true;
     }
 }
