@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (random <= FrequenceApparition && found == false)
+            if (random <= FrequenceApparition && found == false && go.GetComponent<SpriteRenderer>().isVisible == false)
             {
                 UnityEngine.Object newPlanete = Instantiate(planetePrefab, go.transform.position, Quaternion.identity);
                 Planet planetScript = newPlanete.GetComponent<Planet>();
