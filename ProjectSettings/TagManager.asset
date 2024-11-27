@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - SpawnPoints
+  - Planete
   layers:
   - Default
   - TransparentFX
