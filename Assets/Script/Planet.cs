@@ -11,6 +11,7 @@ public class Planet : MonoBehaviour
     bool visible = false;
     bool firstVisible = false;
     float time = 0;
+    public Canvas Canvas;
 
     void Start()
     {
@@ -43,9 +44,12 @@ public class Planet : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetButton("Fire3"))
+        if (Input.GetButton("Fire3") && GameManager.GetComponent<GameManager>().pause == false)
         {
-            Debug.Log("touché");
+            GameManager.GetComponent<GameManager>().pause = true;
+            Canvas.gameObject.SetActive(true);
+            //Canvas.Activation();
+
         }
     }
 

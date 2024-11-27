@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public float DetectionRadius;
     string objectTag = "Planete";
 
+    [HideInInspector]
+    public bool pause = false;
+
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoints");
