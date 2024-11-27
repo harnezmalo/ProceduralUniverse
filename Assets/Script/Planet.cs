@@ -41,11 +41,11 @@ public class Planet : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetButton("Fire3"))
         {
-            Debug.Log("touché)");
+            Debug.Log("touché");
         }
     }
 
