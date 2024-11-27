@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float FrequenceApparition;
     GameObject[] spawnPoints;
     public UnityEngine.Object planetePrefab;
+    public float DetectionRadius;
+    string objectTag = "Planete";
 
     void Start()
     {
@@ -39,10 +41,27 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlanets(GameObject[] spawnPoints)
     {
+        bool found = false;
+
         foreach (GameObject go in spawnPoints)
         {
             float random = UnityEngine.Random.Range(0f, 100f);
-            if (random <= FrequenceApparition)
+
+            GameObject[] objectsToCheck = GameObject.FindGameObjectsWithTag(objectTag);
+            found = false;
+
+            foreach (GameObject obj in objectsToCheck)
+            {
+                float distance = Vector3.Distance(go.transform.position, obj.transform.position);
+
+                if (distance <= DetectionRadius)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (random <= FrequenceApparition && found == false)
             {
                 UnityEngine.Object newPlanete = Instantiate(planetePrefab, go.transform.position, Quaternion.identity);
                 Planet planetScript = newPlanete.GetComponent<Planet>();

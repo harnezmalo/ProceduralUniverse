@@ -10,6 +10,7 @@ public class Planet : MonoBehaviour
     bool destroyable = false;
     bool visible = false;
     bool firstVisible = false;
+    float time = 0;
 
     void Start()
     {
@@ -30,6 +31,13 @@ public class Planet : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("detruit");
+        }
+
+        time = time + Time.deltaTime;
+
+        if (time > 8)
+        {
+            destroyable = true;
         }
     }
 
