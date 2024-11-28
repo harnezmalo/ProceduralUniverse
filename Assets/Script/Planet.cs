@@ -3,9 +3,16 @@ using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
-    Image Image;
-    Dialogue Dialogue;
-    Choix Choix;
+    [HideInInspector]
+    public Image Image;
+
+    [HideInInspector]
+    public Dialogue Dialogue;
+
+    [HideInInspector]
+    public Choix Choix;
+
+
     GameManager GameManager;
     Sprite Sprite;
     bool destroyable = false;
@@ -47,6 +54,7 @@ public class Planet : MonoBehaviour
     {
         if (Input.GetButton("Fire3") && GameManager.GetComponent<GameManager>().pause == false)
         {
+            GameManager.GetComponent<GameManager>().planeteContact = this;
             GameManager.GetComponent<GameManager>().pause = true;
             Canvas.GetComponent<CanvaController>().Activation();
 

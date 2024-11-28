@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanvaController : MonoBehaviour
@@ -8,11 +9,14 @@ public class CanvaController : MonoBehaviour
     float MZWidth;
     float MZHeight;
     public TMPro.TextMeshProUGUI MainZoneText;
+    public float AttenteEcriture;
+    GameManager manager;
 
     void Start()
     {
         MZWidth = MainZone.GetComponent<RectTransform>().rect.width;
         MZHeight = MainZone.GetComponent<RectTransform>().rect.height;
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
 
@@ -29,6 +33,17 @@ public class CanvaController : MonoBehaviour
         MainZoneText.text = "";
 
         StartCoroutine(OpenMenu());
+    }
+
+    IEnumerator Ecriture(string text)
+    {
+        MainZoneText.text = "";
+
+        for (int i=0; i<= text.Length; i++)
+        {
+            MainZoneText.text += text[i];
+            yield return new WaitForSeconds(AttenteEcriture);
+        }
     }
 
     IEnumerator OpenMenu()
@@ -57,6 +72,10 @@ public class CanvaController : MonoBehaviour
         }
 
         rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, MZWidth);
+
+        yield return new WaitForSeconds(1);
+
+        StartCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues));
 
         yield break;
     }

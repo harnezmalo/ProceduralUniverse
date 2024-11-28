@@ -16,7 +16,7 @@ public class Image : ScriptableObject
 public class Dialogue : ScriptableObject
 {
     public UnityEngine.UI.Image Portrait;
-    public List<string> Dialogues = new List<string>();
+    public string Dialogues;
 }
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Choix")]

@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     string objectTag = "Planete";
 
     [HideInInspector]
+    public UnityEngine.Object planeteContact;
+
+    [HideInInspector]
     public bool pause = false;
 
     void Start()
