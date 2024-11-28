@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class Planet : MonoBehaviour
     bool visible = false;
     bool firstVisible = false;
     float time = 0;
-    public Canvas Canvas;
+    Canvas Canvas;
 
     void Start()
     {
-        
+        Canvas = GameObject.Find("UI").GetComponent<Canvas>();
     }
 
     void Update()
@@ -47,8 +48,7 @@ public class Planet : MonoBehaviour
         if (Input.GetButton("Fire3") && GameManager.GetComponent<GameManager>().pause == false)
         {
             GameManager.GetComponent<GameManager>().pause = true;
-            Canvas.gameObject.SetActive(true);
-            //Canvas.Activation();
+            Canvas.GetComponent<CanvaController>().Activation();
 
         }
     }
