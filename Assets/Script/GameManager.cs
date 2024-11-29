@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     string objectTag = "Planete";
 
     [HideInInspector]
-    public UnityEngine.Object planeteContact;
+    public GameObject planeteContact;
 
     [HideInInspector]
     public bool pause = false;
@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
                 UnityEngine.Object newPlanete = Instantiate(planetePrefab, go.transform.position, Quaternion.identity);
                 Planet planetScript = newPlanete.GetComponent<Planet>();
                 planetScript.Initiate();
-                Debug.Log("créé");
             }
 
         }

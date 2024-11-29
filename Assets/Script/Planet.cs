@@ -39,7 +39,6 @@ public class Planet : MonoBehaviour
         if (visible == false && destroyable == true)
         {
             Destroy(gameObject);
-            Debug.Log("detruit");
         }
 
         time = time + Time.deltaTime;
@@ -54,7 +53,7 @@ public class Planet : MonoBehaviour
     {
         if (Input.GetButton("Fire3") && GameManager.GetComponent<GameManager>().pause == false)
         {
-            GameManager.GetComponent<GameManager>().planeteContact = this;
+            GameManager.GetComponent<GameManager>().planeteContact = gameObject;
             GameManager.GetComponent<GameManager>().pause = true;
             Canvas.GetComponent<CanvaController>().Activation();
 

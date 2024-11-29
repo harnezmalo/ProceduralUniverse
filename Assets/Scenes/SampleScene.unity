@@ -2042,10 +2042,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.3882353, g: 0.6901961, b: 0.83137256, a: 1}
+    m_NormalColor: {r: 0.28627452, g: 0.7411765, b: 0.78039217, a: 1}
+    m_HighlightedColor: {r: 0.07450981, g: 0.23137255, b: 0.3019608, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2064,7 +2064,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 959076260}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 999095329}
+        m_TargetAssemblyTypeName: CanvaController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &959076260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2306,6 +2318,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainZone: {fileID: 802707162}
   MainZoneText: {fileID: 350385980}
+  AttenteEcriture: 0.05
+  bouton1: {fileID: 1427116431}
+  bouton2: {fileID: 959076259}
+  bouton1Text: {fileID: 1558675504}
+  bouton2Text: {fileID: 333366129}
+  CoroutineEcriture: 0
 --- !u!1 &1048901360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,10 +2720,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.38768244, g: 0.6883598, b: 0.8301887, a: 1}
+    m_NormalColor: {r: 0.28627452, g: 0.7411765, b: 0.7803922, a: 1}
+    m_HighlightedColor: {r: 0.07262371, g: 0.22884725, b: 0.3018868, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2724,7 +2742,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1427116432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 999095329}
+        m_TargetAssemblyTypeName: CanvaController, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1427116432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,6 +2965,7 @@ MonoBehaviour:
   FrequenceApparition: 0.1
   planetePrefab: {fileID: 821398170331199783, guid: d513af75055ac1f48a90a30d11ba0944, type: 3}
   DetectionRadius: 8
+  planeteContact: {fileID: 0}
   pause: 0
 --- !u!4 &1632065746
 Transform:
