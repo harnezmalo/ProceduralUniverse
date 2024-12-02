@@ -17,7 +17,7 @@ public class SpaceshipControler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (manager.pause == false)
         {

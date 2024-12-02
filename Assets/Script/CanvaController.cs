@@ -74,6 +74,7 @@ public class CanvaController : MonoBehaviour
             MainZone.enabled == true &&
             manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[0] != MainZoneText.text &&
             manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[1] != MainZoneText.text &&
+            manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues != MainZoneText.text &&
             Input.GetButton("Fire1") &&
             CoroutineEcriture == true &&
             phase2 == true &&
@@ -103,8 +104,8 @@ public class CanvaController : MonoBehaviour
     public void Activation()
     {
         MainZone.gameObject.SetActive(true);
-        MainZone.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1);
-        MainZone.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 1);
+        MainZone.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 8);
+        MainZone.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 8);
         MainZoneText.text = "";
 
         StartCoroutine(OpenMenu());
@@ -133,7 +134,7 @@ public class CanvaController : MonoBehaviour
         float lerpSpeed = Open1;
         float lerpSpeed1 = Open2;
 
-        while (Mathf.Abs(currentHeight - MZHeight) > 1f) 
+        while (Mathf.Abs(currentHeight - MZHeight) > 2f) 
         {
             currentHeight = Mathf.Lerp(currentHeight, MZHeight, lerpSpeed1);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
@@ -319,11 +320,9 @@ public class CanvaController : MonoBehaviour
 
         rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
 
         bouton1.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(0.25f);
 
         RectTransform rectTransform2 = bouton2.GetComponent<RectTransform>();
         float currentHeight2 = rectTransform2.rect.height;
