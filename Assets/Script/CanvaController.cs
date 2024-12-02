@@ -25,6 +25,12 @@ public class CanvaController : MonoBehaviour
     bool phase2 = false;
     int reponse;
 
+    public float Open1;
+    public float Open2;
+    public float close1;
+    public float close2;
+    bool down = false;
+
     [HideInInspector]
     public bool CoroutineEcriture = false;
 
@@ -55,7 +61,6 @@ public class CanvaController : MonoBehaviour
             StopAllCoroutines();
             MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues;
             CoroutineEcriture = false;
-            Debug.Log("Force");
         }
 
         if (!bouton1.isActiveAndEnabled && !bouton2.isActiveAndEnabled && 
@@ -71,16 +76,18 @@ public class CanvaController : MonoBehaviour
             manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[1] != MainZoneText.text &&
             Input.GetButton("Fire1") &&
             CoroutineEcriture == true &&
-            phase2 == true)
+            phase2 == true &&
+            down == false)
         {
-            StopCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse]));
+            StopCoroutine("Ecriture");
             MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse];
         }
 
         if (phase2 == true &&
             manager.pause == true &&
             MainZone.enabled == true &&
-            manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse] == MainZoneText.text &&
+            (manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[0] == MainZoneText.text ||
+            manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[1] == MainZoneText.text) &&
             Input.GetButton("Fire1") &&
             !bouton1.isActiveAndEnabled && 
             !bouton2.isActiveAndEnabled)
@@ -105,13 +112,15 @@ public class CanvaController : MonoBehaviour
 
     IEnumerator Ecriture(string text)
     {
+        Debug.Log("ecris");
         CoroutineEcriture = true;
         MainZoneText.text = "";
 
-        for (int i=0; i<= (text.Length-1); i++)
+        for (int i=0; i< text.Length; i++)
         {
-            MainZoneText.text += text[i];
+            MainZoneText.text = MainZoneText.text + text[i];
             yield return new WaitForSeconds(AttenteEcriture);
+            Debug.Log(i);
         }
 
         CoroutineEcriture = false;
@@ -121,8 +130,8 @@ public class CanvaController : MonoBehaviour
     {
         RectTransform rectTransform = MainZone.GetComponent<RectTransform>();
         float currentHeight = rectTransform.rect.height;
-        float lerpSpeed = 0.019f;
-        float lerpSpeed1 = 0.025f;
+        float lerpSpeed = Open1;
+        float lerpSpeed1 = Open2;
 
         while (Mathf.Abs(currentHeight - MZHeight) > 1f) 
         {
@@ -154,8 +163,8 @@ public class CanvaController : MonoBehaviour
     {
         RectTransform rectTransform = MainZone.GetComponent<RectTransform>();
         float currentHeight = rectTransform.rect.height;
-        float lerpSpeed = 0.019f;
-        float lerpSpeed1 = 0.025f;
+        float lerpSpeed = close1;
+        float lerpSpeed1 = close2;
 
         while (Mathf.Abs(currentHeight - 5) > 1f)
         {
@@ -193,8 +202,8 @@ public class CanvaController : MonoBehaviour
 
         RectTransform rectTransform1 = bouton1.GetComponent<RectTransform>();
         float currentHeight = rectTransform1.rect.height;
-        float lerpSpeed = 0.019f;
-        float lerpSpeed1 = 0.025f;
+        float lerpSpeed = Open1;
+        float lerpSpeed1 = Open2;
 
         while (Mathf.Abs(currentHeight - B1Height) > 1f)
         {
@@ -225,8 +234,8 @@ public class CanvaController : MonoBehaviour
 
         RectTransform rectTransform2 = bouton2.GetComponent<RectTransform>();
         float currentHeight2 = rectTransform2.rect.height;
-        float lerpSpeed2 = 0.019f;
-        float lerpSpeed3 = 0.025f;
+        float lerpSpeed2 = Open1;
+        float lerpSpeed3 = Open2;
 
         while (Mathf.Abs(currentHeight2 - B2Height) > 1f)
         {
@@ -273,12 +282,14 @@ public class CanvaController : MonoBehaviour
 
     public void Click(int i)
     {
-        Debug.Log("appuyé");
+        down = true;
         StartCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[i]));
+        EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(CloseButtons());
         StartCoroutine(Decrire(bouton1Text));
         StartCoroutine(Decrire(bouton2Text));
         reponse = i;
+        StartCoroutine(Wait());
     }
 
     IEnumerator CloseButtons()
@@ -286,8 +297,8 @@ public class CanvaController : MonoBehaviour
 
         RectTransform rectTransform1 = bouton1.GetComponent<RectTransform>();
         float currentHeight = rectTransform1.rect.height;
-        float lerpSpeed = 0.019f;
-        float lerpSpeed1 = 0.025f;
+        float lerpSpeed = close1;
+        float lerpSpeed1 = close2;
 
         while (Mathf.Abs(currentHeight - 5) > 1f)
         {
@@ -316,8 +327,8 @@ public class CanvaController : MonoBehaviour
 
         RectTransform rectTransform2 = bouton2.GetComponent<RectTransform>();
         float currentHeight2 = rectTransform2.rect.height;
-        float lerpSpeed2 = 0.019f;
-        float lerpSpeed3 = 0.025f;
+        float lerpSpeed2 = 0.012f;
+        float lerpSpeed3 = 0.019f;
 
         while (Mathf.Abs(currentHeight2 - 5) > 1f)
         {
@@ -350,4 +361,11 @@ public class CanvaController : MonoBehaviour
             yield return new WaitForSeconds(AttenteEcriture/3);
         }
     }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        down = false;
+    }
+
 }

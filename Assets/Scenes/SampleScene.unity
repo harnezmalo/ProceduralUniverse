@@ -2323,6 +2323,10 @@ MonoBehaviour:
   bouton2: {fileID: 959076259}
   bouton1Text: {fileID: 1558675504}
   bouton2Text: {fileID: 333366129}
+  Open1: 0.012
+  Open2: 0.019
+  close1: 0.009
+  close2: 0.015
   CoroutineEcriture: 0
 --- !u!1 &1048901360
 GameObject:
