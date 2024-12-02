@@ -22,6 +22,8 @@ public class CanvaController : MonoBehaviour
     public UnityEngine.UI.Button bouton2;
     public TMPro.TextMeshProUGUI bouton1Text;
     public TMPro.TextMeshProUGUI bouton2Text;
+    bool phase2 = false;
+    int reponse;
 
     [HideInInspector]
     public bool CoroutineEcriture = false;
@@ -45,7 +47,10 @@ public class CanvaController : MonoBehaviour
             MainZone.enabled == true && 
             manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues != MainZoneText.text && 
             Input.GetButton("Fire1") && 
-            CoroutineEcriture == true)
+            CoroutineEcriture == true &&
+            !bouton1.isActiveAndEnabled && 
+            !bouton2.isActiveAndEnabled &&
+            phase2 == false)
         {
             StopAllCoroutines();
             MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues;
@@ -57,6 +62,34 @@ public class CanvaController : MonoBehaviour
             MainZoneText.text == manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues)
         {
             StartCoroutine(OpenButtons());
+            phase2 = true;
+        }
+
+        if (manager.pause == true &&
+            MainZone.enabled == true &&
+            manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[0] != MainZoneText.text &&
+            manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[1] != MainZoneText.text &&
+            Input.GetButton("Fire1") &&
+            CoroutineEcriture == true &&
+            phase2 == true)
+        {
+            StopCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse]));
+            MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse];
+        }
+
+        if (phase2 == true &&
+            manager.pause == true &&
+            MainZone.enabled == true &&
+            manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse] == MainZoneText.text &&
+            Input.GetButton("Fire1") &&
+            !bouton1.isActiveAndEnabled && 
+            !bouton2.isActiveAndEnabled)
+        {
+            Debug.Log("c bon");
+            phase2 = false;
+            StartCoroutine(CloseMenu());
+            StartCoroutine(Decrire(MainZoneText));
+
         }
     }
 
@@ -117,6 +150,36 @@ public class CanvaController : MonoBehaviour
         yield break;
     }
 
+    IEnumerator CloseMenu()
+    {
+        RectTransform rectTransform = MainZone.GetComponent<RectTransform>();
+        float currentHeight = rectTransform.rect.height;
+        float lerpSpeed = 0.019f;
+        float lerpSpeed1 = 0.025f;
+
+        while (Mathf.Abs(currentHeight - 5) > 1f)
+        {
+            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1);
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
+            yield return null;
+        }
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 5);
+
+        float currentWidth = rectTransform.rect.width;
+
+        while (Mathf.Abs(currentWidth) > 1f)
+        {
+            currentWidth = Mathf.Lerp(currentWidth, 0, lerpSpeed);
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
+            yield return null;
+        }
+
+        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+
+        MainZone.gameObject.SetActive(false);
+        manager.pause = false;
+    }
+
     IEnumerator OpenButtons()
     {
         bouton1.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 5);
@@ -152,11 +215,11 @@ public class CanvaController : MonoBehaviour
 
         rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, B1Width);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
 
         StartCoroutine(EcritureButtons(bouton1Text, manager.planeteContact.GetComponent<Planet>().Choix.Choix_Réponse[0]));
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
 
         bouton2.gameObject.SetActive(true);
 
@@ -184,11 +247,11 @@ public class CanvaController : MonoBehaviour
 
         rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, B2Width);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.15f);
 
         StartCoroutine(EcritureButtons(bouton2Text, manager.planeteContact.GetComponent<Planet>().Choix.Choix_Réponse[1]));
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.25f);
 
         EventSystem.current.SetSelectedGameObject(bouton1.gameObject);
 
@@ -212,5 +275,79 @@ public class CanvaController : MonoBehaviour
     {
         Debug.Log("appuyé");
         StartCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[i]));
+        StartCoroutine(CloseButtons());
+        StartCoroutine(Decrire(bouton1Text));
+        StartCoroutine(Decrire(bouton2Text));
+        reponse = i;
+    }
+
+    IEnumerator CloseButtons()
+    {
+
+        RectTransform rectTransform1 = bouton1.GetComponent<RectTransform>();
+        float currentHeight = rectTransform1.rect.height;
+        float lerpSpeed = 0.019f;
+        float lerpSpeed1 = 0.025f;
+
+        while (Mathf.Abs(currentHeight - 5) > 1f)
+        {
+            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1);
+            rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
+            yield return null;
+        }
+        rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 5);
+
+        float currentWidth = rectTransform1.rect.width;
+
+        while (Mathf.Abs(currentWidth - 5) > 1f)
+        {
+            currentWidth = Mathf.Lerp(currentWidth, 5, lerpSpeed);
+            rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
+            yield return null;
+        }
+
+        rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+
+        yield return new WaitForSeconds(0.25f);
+
+        bouton1.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        RectTransform rectTransform2 = bouton2.GetComponent<RectTransform>();
+        float currentHeight2 = rectTransform2.rect.height;
+        float lerpSpeed2 = 0.019f;
+        float lerpSpeed3 = 0.025f;
+
+        while (Mathf.Abs(currentHeight2 - 5) > 1f)
+        {
+            currentHeight2 = Mathf.Lerp(currentHeight2, 5, lerpSpeed2);
+            rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight2);
+            yield return null;
+        }
+        rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 5);
+
+        float currentWidth2 = rectTransform2.rect.width;
+
+        while (Mathf.Abs(currentWidth2 - 5) > 1f)
+        {
+            currentWidth2 = Mathf.Lerp(currentWidth2, 5, lerpSpeed3);
+            rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth2);
+            yield return null;
+        }
+
+        rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+
+        bouton2.gameObject.SetActive(false);
+
+    }
+
+    IEnumerator Decrire(TMPro.TextMeshProUGUI zoneText)
+    {
+        for (int i = 0; i < zoneText.text.Length; i++)
+        {
+            zoneText.text = zoneText.text.Remove(0);
+            yield return new WaitForSeconds(AttenteEcriture/3);
+        }
     }
 }
