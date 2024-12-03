@@ -7,6 +7,7 @@ TagManager:
   - GameManager
   - SpawnPoints
   - Planete
+  - noir
   layers:
   - Default
   - TransparentFX
@@ -41,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Above
+    uniqueID: 3912453517
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

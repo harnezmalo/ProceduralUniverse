@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,16 +16,29 @@ public class GameManager : MonoBehaviour
     public UnityEngine.Object planetePrefab;
     public float DetectionRadius;
     string objectTag = "Planete";
+    public UnityEngine.UI.Image noir;
+    public float Fade;
+    AudioSource son;
+    public float AttenteDebut;
+    public float texte1;
+    public float texte2;
+    public float texte3;
+    public float DebutFade;
 
     [HideInInspector]
     public GameObject planeteContact;
 
     [HideInInspector]
-    public bool pause = false;
+    public bool pause = true;
 
-    void Start()
+    IEnumerator Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoints");
+        StartCoroutine(Debut());
+        son = GetComponent<AudioSource>();
+        yield return new WaitForSeconds(1f);
+
+
     }
 
     // Update is called once per frame
@@ -77,4 +91,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator FadeOut()
+    {
+        Color color = noir.color;
+        float elapsedTime = 0f;
+        while (color.a > 0f)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime*Fade);
+            noir.color = color;
+            yield return null;
+        }
+        pause = false;
+    }
+
+    IEnumerator Debut()
+    {
+        yield return new WaitForSeconds(AttenteDebut);
+        son.Play();
+        yield return new WaitForSeconds(texte1);
+
+        yield return new WaitForSeconds(texte2);
+
+        yield return new WaitForSeconds(texte3);
+
+        yield return new WaitForSeconds(DebutFade);
+        StartCoroutine(FadeOut());
+    }
 }
