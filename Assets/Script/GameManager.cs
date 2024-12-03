@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public TMPro.TextMeshProUGUI text2;
     public float apparition2;
     public float DebutFade;
+    public AudioClip SonBoucle;
+    bool check = false;
 
     [HideInInspector]
     public GameObject planeteContact;
@@ -42,13 +44,21 @@ public class GameManager : MonoBehaviour
         son = GetComponent<AudioSource>();
         Cursor.visible = false;
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
         SpawnPlanets(spawnPoints);
+
+        if (check)
+        {
+            if (!son.isPlaying)
+            {
+                son.clip = SonBoucle;
+                son.Play();
+            }
+        }
     }
 
     public void GetComponents(out Image image, out Dialogue dialogue, out Choix choix)
