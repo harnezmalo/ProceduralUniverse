@@ -2,19 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScrollImg : MonoBehaviour
+public class ScrollUV1 : MonoBehaviour
 {
     public float parralax;
-    public GameObject quad;
 
-    private void Start()
+    void Start()
     {
-        Renderer quadRenderer = quad.GetComponent<Renderer>();
-        if (quadRenderer != null)
-        {
-            quadRenderer.sortingLayerName = "Above"; // Assigner la couche
-            quadRenderer.sortingOrder = 10;              // Ordre élevé pour être au-dessus
-        }
+        GetComponent<MeshRenderer>().sortingOrder = 3;
     }
     void Update()
     {

@@ -19,10 +19,14 @@ public class GameManager : MonoBehaviour
     public UnityEngine.UI.Image noir;
     public float Fade;
     AudioSource son;
+    public float fadeText;
     public float AttenteDebut;
     public float texte1;
+    public TMPro.TextMeshProUGUI text1;
+    public float apparition1;
     public float texte2;
-    public float texte3;
+    public TMPro.TextMeshProUGUI text2;
+    public float apparition2;
     public float DebutFade;
 
     [HideInInspector]
@@ -31,12 +35,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool pause = true;
 
-    IEnumerator Start()
+    void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoints");
         StartCoroutine(Debut());
         son = GetComponent<AudioSource>();
-        yield return new WaitForSeconds(1f);
+        Cursor.visible = false;
 
 
     }
@@ -109,13 +113,46 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(AttenteDebut);
         son.Play();
+
         yield return new WaitForSeconds(texte1);
+        StartCoroutine(FadeInText(text1));
+        yield return new WaitForSeconds(apparition1);
+        StartCoroutine(FadeOutText(text1));
 
         yield return new WaitForSeconds(texte2);
-
-        yield return new WaitForSeconds(texte3);
+        StartCoroutine(FadeInText(text2));
+        yield return new WaitForSeconds(apparition2);
+        StartCoroutine(FadeOutText(text2));
 
         yield return new WaitForSeconds(DebutFade);
         StartCoroutine(FadeOut());
+    }
+
+    IEnumerator FadeInText(TMPro.TextMeshProUGUI text)
+    {
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
+        Color color = new Color(text.color.r, text.color.g, text.color.b, 0);
+        float elapsedTime = 0f;
+        while (color.a < 1f)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(0f, 1f, elapsedTime * fadeText);
+            text.color = color;
+            yield return null;
+        }
+    }
+
+    IEnumerator FadeOutText(TMPro.TextMeshProUGUI text)
+    {
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 1);
+        Color color = new Color(text.color.r, text.color.g, text.color.b, 1);
+        float elapsedTime = 0f;
+        while (color.a > 0f)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime * fadeText);
+            text.color = color;
+            yield return null;
+        }
     }
 }
