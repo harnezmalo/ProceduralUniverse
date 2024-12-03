@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5983a9a714ddc43bf945ed6d036caa, type: 3}
+  m_Name: Choix
+  m_EditorClassIdentifier: 
+  "Choix_R\xE9ponse":
+  - Pourquoi ?
+  - Non.
+  "R\xE9ponses_Alien":
+  - "Dans l'immensit\xE9 d'une nuit froide, il marchait sans but, les \xE9toiles
+    comme seul rep\xE8re\u2014ou peut-\xEAtre aucun."
+  - "Soudain, un cri per\xE7a le silence : \xE9tait-ce un animal, un homme... ou
+    simplement le vent ?"

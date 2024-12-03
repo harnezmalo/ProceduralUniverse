@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5983a9a714ddc43bf945ed6d036caa, type: 3}
+  m_Name: Choix 5
+  m_EditorClassIdentifier: 
+  "Choix_R\xE9ponse":
+  - Maintenant ?
+  - Rien.
+  "R\xE9ponses_Alien":
+  - "Les ombres s'\xE9tiraient sur les murs, dansant au rythme de la lumi\xE8re vacillante,
+    cr\xE9ant un ballet \xE9trange et hypnotique."
+  - "Et pourtant, au milieu du chaos, un \xE9clat d'espoir brillait, aussi t\xE9nu
+    qu'une flamme sur le point de s'\xE9teindre."

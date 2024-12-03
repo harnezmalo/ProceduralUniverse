@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5983a9a714ddc43bf945ed6d036caa, type: 3}
+  m_Name: Choix 4
+  m_EditorClassIdentifier: 
+  "Choix_R\xE9ponse":
+  - Ne bouge pas.
+  - C'est fini.
+  "R\xE9ponses_Alien":
+  - "Il ferma les yeux, inspira profond\xE9ment et laissa le silence envahir son
+    esprit, un instant de paix dans un monde d\xE9cha\xEEn\xE9."
+  - "Mais peut-\xEAtre que ce n'\xE9tait pas la fin, juste un autre commencement,
+    un cycle \xE9ternel o\xF9 tout recommen\xE7ait, encore et encore."

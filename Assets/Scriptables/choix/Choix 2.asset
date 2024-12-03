@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5983a9a714ddc43bf945ed6d036caa, type: 3}
+  m_Name: Choix 2
+  m_EditorClassIdentifier: 
+  "Choix_R\xE9ponse":
+  - Toujours ?
+  - Cours
+  "R\xE9ponses_Alien":
+  - "Les vagues s'\xE9crasaient contre les rochers, rugissantes, inlassables, \xE9ternelles
+    : un spectacle aussi terrifiant qu'hypnotisant."
+  - "Sous un ciel lourd, charg\xE9 d'ombres mena\xE7antes, elle avan\xE7ait lentement,
+    chaque pas plus incertain que le pr\xE9c\xE9dent."

@@ -3708,11 +3708,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   images:
-  - {fileID: 11400000, guid: 5087d49ca316a1f4cb9efda092e525d5, type: 2}
+  - {fileID: 11400000, guid: 6cbb2d9ac096c3642ad7ce87ca17dc44, type: 2}
+  - {fileID: 11400000, guid: 285cb79a5820b7844a8a235b523371a0, type: 2}
+  - {fileID: 11400000, guid: 6b5a7d52ada7211469bea752817e53d3, type: 2}
+  - {fileID: 11400000, guid: f7c10292fa292574a85bebf4f77a7260, type: 2}
+  - {fileID: 11400000, guid: e562418c0dd1f0d48825532087cd2cc4, type: 2}
+  - {fileID: 11400000, guid: b0ab5769b74dc324fa27afe32cca6b62, type: 2}
+  - {fileID: 11400000, guid: 26dbfc11eabbe1c4cb1f1b51cc7c4534, type: 2}
+  - {fileID: 11400000, guid: 678ff34034937c146a460e6e7880851f, type: 2}
+  - {fileID: 11400000, guid: ed80808d980fa6a4a92b263727a9d488, type: 2}
+  - {fileID: 11400000, guid: f295da195ab57cb4b81d8c764bdabd92, type: 2}
+  - {fileID: 11400000, guid: de9641ae272b91d4c84b11330b63d06a, type: 2}
+  - {fileID: 11400000, guid: e2c840be7bacfd742aa04b387a295821, type: 2}
+  - {fileID: 11400000, guid: 6e15c3df441fe354585becf733aaf440, type: 2}
+  - {fileID: 11400000, guid: 0ebad95b42586c6419abdd4db092d18c, type: 2}
+  - {fileID: 11400000, guid: f7165f33bc84ac0428ee2f8b55263831, type: 2}
+  - {fileID: 11400000, guid: 0c4f8d6ccfc76934788556701bc321b5, type: 2}
+  - {fileID: 11400000, guid: a8c9385e0b2eac146ab83adc13538859, type: 2}
+  - {fileID: 11400000, guid: 907640503ef29d44aa88b3f15fb7c9b3, type: 2}
   dialogues:
-  - {fileID: 11400000, guid: 115d4d0bf2f8981449649a2756aef6cd, type: 2}
+  - {fileID: 11400000, guid: de02f24fe80491645902d02103a90a87, type: 2}
+  - {fileID: 11400000, guid: 4fe10d801cd5b89488118c544f3247c0, type: 2}
+  - {fileID: 11400000, guid: 08886147b132a4a47be15d175c7abbf9, type: 2}
+  - {fileID: 11400000, guid: f3f9f282940568d4aad187eee5ed4cd4, type: 2}
+  - {fileID: 11400000, guid: c23cd374b451135428a25c7d07fff1d3, type: 2}
+  - {fileID: 11400000, guid: 39ac68a4a448f254d993f7f058fdcbab, type: 2}
+  - {fileID: 11400000, guid: 351f6fa855b3f6843bc996dbe1bfc689, type: 2}
+  - {fileID: 11400000, guid: ec753e32ae768b447b988e76a5a4610c, type: 2}
   choixI:
-  - {fileID: 11400000, guid: 9f1c0f82542b12a4fbd0bbd7920c281a, type: 2}
+  - {fileID: 11400000, guid: 2b77ea363cf70a444a755083dfc40207, type: 2}
+  - {fileID: 11400000, guid: 2993e92400c79f34f8b1dcbb315b027e, type: 2}
+  - {fileID: 11400000, guid: f731f07d6f26b9e49bfcb3eafbb9ddd8, type: 2}
+  - {fileID: 11400000, guid: 5a383bce050050640abb5f3f3ed28bc9, type: 2}
+  - {fileID: 11400000, guid: 87e94714e2bb8094992265426ba097ab, type: 2}
+  - {fileID: 11400000, guid: a82c4f0258c1f5b45b8fe83073517506, type: 2}
   FrequenceApparition: 0.1
   planetePrefab: {fileID: 821398170331199783, guid: d513af75055ac1f48a90a30d11ba0944, type: 3}
   DetectionRadius: 8
