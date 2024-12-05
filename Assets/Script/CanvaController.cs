@@ -86,6 +86,8 @@ public class CanvaController : MonoBehaviour
             MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse];
             Debug.Log("fin ecriture 2");
             CoroutineEcriture = false;
+            down = true;
+            StartCoroutine(Wait());
         }
 
         if (phase2 == true &&
@@ -95,7 +97,8 @@ public class CanvaController : MonoBehaviour
             manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[1] == MainZoneText.text) &&
             Input.GetButton("Fire1") &&
             !bouton1.isActiveAndEnabled && 
-            !bouton2.isActiveAndEnabled)
+            !bouton2.isActiveAndEnabled &&
+            down == false)
         {
             Debug.Log("c bon");
             phase2 = false;
