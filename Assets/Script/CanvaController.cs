@@ -30,6 +30,7 @@ public class CanvaController : MonoBehaviour
     public float close1;
     public float close2;
     bool down = false;
+    Coroutine ecritureCoroutine;
 
     [HideInInspector]
     public bool CoroutineEcriture = false;
@@ -63,8 +64,9 @@ public class CanvaController : MonoBehaviour
             CoroutineEcriture = false;
         }
 
-        if (!bouton1.isActiveAndEnabled && !bouton2.isActiveAndEnabled && 
-            MainZoneText.text == manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues)
+        if (!bouton1.isActiveAndEnabled && !bouton2.isActiveAndEnabled &&
+            MainZoneText.text == manager.planeteContact.GetComponent<Planet>().Dialogue.Dialogues &&
+            phase2 == false)
         {
             StartCoroutine(OpenButtons());
             phase2 = true;
@@ -80,8 +82,10 @@ public class CanvaController : MonoBehaviour
             phase2 == true &&
             down == false)
         {
-            StopCoroutine("Ecriture");
+            StopCoroutine(ecritureCoroutine);
             MainZoneText.text = manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[reponse];
+            Debug.Log("fin ecriture 2");
+            CoroutineEcriture = false;
         }
 
         if (phase2 == true &&
@@ -113,7 +117,7 @@ public class CanvaController : MonoBehaviour
 
     IEnumerator Ecriture(string text)
     {
-        Debug.Log("ecris");
+        
         CoroutineEcriture = true;
         MainZoneText.text = "";
 
@@ -121,10 +125,10 @@ public class CanvaController : MonoBehaviour
         {
             MainZoneText.text = MainZoneText.text + text[i];
             yield return new WaitForSeconds(AttenteEcriture);
-            Debug.Log(i);
         }
 
         CoroutineEcriture = false;
+
     }
 
     IEnumerator OpenMenu()
@@ -136,7 +140,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentHeight - MZHeight) > 2f) 
         {
-            currentHeight = Mathf.Lerp(currentHeight, MZHeight, lerpSpeed1);
+            currentHeight = Mathf.Lerp(currentHeight, MZHeight, lerpSpeed1*Time.deltaTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
             yield return null;
         }
@@ -146,7 +150,7 @@ public class CanvaController : MonoBehaviour
 
         while(Mathf.Abs(currentWidth - MZWidth) > 1f)
         {
-            currentWidth = Mathf.Lerp(currentWidth, MZWidth, lerpSpeed);
+            currentWidth = Mathf.Lerp(currentWidth, MZWidth, lerpSpeed * Time.deltaTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
             yield return null;
         }
@@ -169,7 +173,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentHeight - 5) > 1f)
         {
-            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1);
+            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1 * Time.deltaTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
             yield return null;
         }
@@ -179,7 +183,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentWidth) > 1f)
         {
-            currentWidth = Mathf.Lerp(currentWidth, 0, lerpSpeed);
+            currentWidth = Mathf.Lerp(currentWidth, 0, lerpSpeed * Time.deltaTime);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
             yield return null;
         }
@@ -208,7 +212,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentHeight - B1Height) > 1f)
         {
-            currentHeight = Mathf.Lerp(currentHeight, B1Height, lerpSpeed1);
+            currentHeight = Mathf.Lerp(currentHeight, B1Height, lerpSpeed1 * Time.deltaTime);
             rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
             yield return null;
         }
@@ -218,7 +222,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentWidth - B1Width) > 1f)
         {
-            currentWidth = Mathf.Lerp(currentWidth, B1Width, lerpSpeed);
+            currentWidth = Mathf.Lerp(currentWidth, B1Width, lerpSpeed * Time.deltaTime);
             rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
             yield return null;
         }
@@ -240,7 +244,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentHeight2 - B2Height) > 1f)
         {
-            currentHeight2 = Mathf.Lerp(currentHeight2, B2Height, lerpSpeed2);
+            currentHeight2 = Mathf.Lerp(currentHeight2, B2Height, lerpSpeed2 * Time.deltaTime);
             rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight2);
             yield return null;
         }
@@ -250,7 +254,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentWidth2 - B2Width) > 1f)
         {
-            currentWidth2 = Mathf.Lerp(currentWidth2, B2Width, lerpSpeed3);
+            currentWidth2 = Mathf.Lerp(currentWidth2, B2Width, lerpSpeed3 * Time.deltaTime);
             rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth2);
             yield return null;
         }
@@ -284,7 +288,7 @@ public class CanvaController : MonoBehaviour
     public void Click(int i)
     {
         down = true;
-        StartCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[i]));
+        ecritureCoroutine = StartCoroutine(Ecriture(manager.planeteContact.GetComponent<Planet>().Choix.Réponses_Alien[i]));
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(CloseButtons());
         StartCoroutine(Decrire(bouton1Text));
@@ -303,7 +307,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentHeight - 5) > 1f)
         {
-            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1);
+            currentHeight = Mathf.Lerp(currentHeight, 5, lerpSpeed1 * Time.deltaTime);
             rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight);
             yield return null;
         }
@@ -313,7 +317,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentWidth - 5) > 1f)
         {
-            currentWidth = Mathf.Lerp(currentWidth, 5, lerpSpeed);
+            currentWidth = Mathf.Lerp(currentWidth, 5, lerpSpeed * Time.deltaTime);
             rectTransform1.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth);
             yield return null;
         }
@@ -326,12 +330,12 @@ public class CanvaController : MonoBehaviour
 
         RectTransform rectTransform2 = bouton2.GetComponent<RectTransform>();
         float currentHeight2 = rectTransform2.rect.height;
-        float lerpSpeed2 = 0.012f;
-        float lerpSpeed3 = 0.019f;
+        float lerpSpeed2 = close1;
+        float lerpSpeed3 = close2;
 
         while (Mathf.Abs(currentHeight2 - 5) > 1f)
         {
-            currentHeight2 = Mathf.Lerp(currentHeight2, 5, lerpSpeed2);
+            currentHeight2 = Mathf.Lerp(currentHeight2, 5, lerpSpeed2 * Time.deltaTime);
             rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, currentHeight2);
             yield return null;
         }
@@ -341,7 +345,7 @@ public class CanvaController : MonoBehaviour
 
         while (Mathf.Abs(currentWidth2 - 5) > 1f)
         {
-            currentWidth2 = Mathf.Lerp(currentWidth2, 5, lerpSpeed3);
+            currentWidth2 = Mathf.Lerp(currentWidth2, 5, lerpSpeed3 * Time.deltaTime);
             rectTransform2.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, currentWidth2);
             yield return null;
         }

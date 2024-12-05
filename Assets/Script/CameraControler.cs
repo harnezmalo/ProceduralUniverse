@@ -19,7 +19,7 @@ public class Camera : MonoBehaviour
     {
         Vector3 desiredPosition = SpaceShip.position + DistZ;
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, latence);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, latence* Time.deltaTime);
 
         transform.position = smoothedPosition;
     }
