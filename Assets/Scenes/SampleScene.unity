@@ -1693,7 +1693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664699120
 MonoBehaviour:
@@ -1715,7 +1715,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: c le texte 2
+  m_text: "\n\n\n\nAsset Packs\n\n\"Planets with Space Background in Flat Style\"
+    \nDinV Studio - assetstore.unity.com\n\n\"Sci-fi GUI skin\"\n3d.rina - assetstore.unity.com\n\n\"SF
+    Distant Galaxy Symbols\"\nShyFonts - dafont.com\n\n\"Seamless Space Backgrounds\"\nScreaming
+    Brain Studios - itch.io\n\n\"Starfield Alpha 4k\"\ndarklighter_designs - opengameart.org\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1749,7 +1752,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2819,7 +2822,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 1059.8727, y: 264.9682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126470465
 MonoBehaviour:
@@ -2841,7 +2844,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: c le texte 1
+  m_text: 'Musiques:
+
+
+    Martin Wave - Spark of Courage (Bramble: The Mountain
+    King)
+
+
+    Hans Zimmer - Time (Inception)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2875,7 +2885,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3742,7 +3752,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a383bce050050640abb5f3f3ed28bc9, type: 2}
   - {fileID: 11400000, guid: 87e94714e2bb8094992265426ba097ab, type: 2}
   - {fileID: 11400000, guid: a82c4f0258c1f5b45b8fe83073517506, type: 2}
-  FrequenceApparition: 0.1
+  FrequenceApparition: 0.015
   planetePrefab: {fileID: 821398170331199783, guid: d513af75055ac1f48a90a30d11ba0944, type: 3}
   DetectionRadius: 8
   noir: {fileID: 526568978}
